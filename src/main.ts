@@ -9,10 +9,9 @@ if (process.env.NODE_ENV !== 'production') {
 const client = new Client();
 const messageDispatcher = new MessageDispatcher();
 
+// setup listeners
 client.on(Events.Ready, () => messageDispatcher.initializeClientStack());
-
 client.on(Events.Message, (message: Message) => messageDispatcher.dispatch(message));
 
-client.login(process.env.BOT_TOKEN).then(() => {
-  Logger.info("Bot logged in!");
-});
+// login client
+client.login(process.env.BOT_TOKEN).then(() => Logger.info("Bot logged in!"));

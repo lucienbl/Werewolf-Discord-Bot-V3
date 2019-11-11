@@ -15,19 +15,20 @@ class CommonMessageHandler extends Handler {
         this._addLocalListener(LocalEvents.NEW_MESSAGE_COMMON, this._handleNewCommonMessage);
     }
 
-    _handleNewCommonMessage = async (message: Message): Promise<void> => {
+    _handleNewCommonMessage = async (message: Message): Promise<any> => {
         const userId = message.author.id;
         const text = message.content;
         const selfId = message.client.user.id;
 
         const dialogFlowResponse = await this._dialogFlow.getResponse(userId, text.replace(`<@${selfId}>`, ""));
 
+        // dialogflow handling
         if (dialogFlowResponse.intentDetectionConfidence >= 0.65) {
             if (message.mentions.users.filter((user: User) => user.id == selfId).size >= 1) {
-                message.channel.send(dialogFlowResponse.fulfillmentText);
+                return message.channel.send(dialogFlowResponse.fulfillmentText);
             } else if (dialogFlowResponse.intent.displayName) {
                 if (dialogFlowResponse.intent.displayName !== "default-fallback") {
-                    message.channel.send(dialogFlowResponse.fulfillmentText);
+                    return message.channel.send(dialogFlowResponse.fulfillmentText);
                 }
             }
         }
