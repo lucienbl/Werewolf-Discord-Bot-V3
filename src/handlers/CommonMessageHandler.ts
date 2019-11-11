@@ -19,7 +19,7 @@ class CommonMessageHandler extends Handler {
         const userId = message.author.id;
         const text = message.content;
 
-        const dialogFlowResponse = await this._dialogFlow.getResponse(userId, text);
+        const dialogFlowResponse = await this._dialogFlow.getResponse(userId, text.replace("<@643439556363943976>", ""));
 
         if (dialogFlowResponse.intentDetectionConfidence >= 0.65) {
             if (message.mentions.users.filter((user: User) => user.id == "643439556363943976").size >= 1) {
