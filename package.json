@@ -7,6 +7,7 @@
   },
   "author": "Lucien Blunk-Lallet <lucien.blunk.lallet@gmail.com>",
   "scripts": {
+    "start": "yarn build && node build/src/main.js",
     "clean": "rimraf coverage build tmp",
     "build": "tsc -p tsconfig.release.json",
     "build:watch": "tsc -w -p tsconfig.release.json",
