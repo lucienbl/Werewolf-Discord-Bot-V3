@@ -21,9 +21,13 @@ class CommonMessageHandler extends Handler {
 
         const dialogFlowResponse = await this._dialogFlow.getResponse(userId, text);
 
-        if (dialogFlowResponse.intent.displayName && dialogFlowResponse.intentDetectionConfidence >= 0.65) {
-            if (dialogFlowResponse.intent.displayName !== "default-fallback" || message.mentions.users.filter((user: User) => user.id == "643439556363943976").size >= 1) {
+        if (dialogFlowResponse.intentDetectionConfidence >= 0.65) {
+            if (message.mentions.users.filter((user: User) => user.id == "643439556363943976").size >= 1) {
                 message.channel.send(dialogFlowResponse.fulfillmentText);
+            } else if (dialogFlowResponse.intent.displayName) {
+                if (dialogFlowResponse.intent.displayName !== "default-fallback") {
+                    message.channel.send(dialogFlowResponse.fulfillmentText);
+                }
             }
         }
     };
