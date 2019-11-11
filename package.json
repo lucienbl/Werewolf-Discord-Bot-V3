@@ -7,7 +7,7 @@
   },
   "author": "Lucien Blunk-Lallet <lucien.blunk.lallet@gmail.com>",
   "scripts": {
-    "start": "node build/src/main.js",
+    "start": "npm install typescript -g && node build/src/main.js",
     "clean": "rimraf coverage build tmp",
     "build": "tsc -p tsconfig.release.json",
     "build:watch": "tsc -w -p tsconfig.release.json",
@@ -20,7 +20,6 @@
     "discord.js": "^11.5.1",
     "dotenv": "^8.2.0",
     "events": "^3.0.0",
-    "tsc": "^1.20150623.0",
     "tslib": "~1.10.0"
   },
   "devDependencies": {
