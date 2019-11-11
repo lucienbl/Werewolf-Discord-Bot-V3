@@ -12,7 +12,7 @@ class CommonMessageHandler extends Handler {
     }
 
     _handleNewCommonMessage = async (msg: Message): Promise<void> => {
-        await msg.channel.send("Hi :wave:");
+        // await msg.channel.send("Hi :wave:");
     };
 }
 
