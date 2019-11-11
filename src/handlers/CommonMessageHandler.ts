@@ -1,7 +1,9 @@
 import {Message, User} from "discord.js";
 import { EventEmitter } from "events";
 import Handler from "./Handler";
-import {DialogFlow, LocalEvents} from "../core";
+import {Commands, DialogFlow, LocalEvents} from "../core";
+import HelpCommand from "../commands/HelpCommand";
+import TesterHatCommand from "../commands/TesterHatCommand";
 
 class CommonMessageHandler extends Handler {
 
@@ -31,6 +33,15 @@ class CommonMessageHandler extends Handler {
                     return message.channel.send(dialogFlowResponse.fulfillmentText);
                 }
             }
+        }
+
+        // commands handling
+        if (!text.startsWith(process.env.PREFIX)) return;
+        switch (text.toLowerCase().substr(1)) {
+            case Commands.HELP: return new HelpCommand(message).handle();
+            case Commands.TESTER_HAT: return new TesterHatCommand(message).handle();
+
+            default: return;
         }
     };
 }
