@@ -35,10 +35,10 @@ class DialogFlow {
         const responses = await this._sessionClient.detectIntent(request);
         const result = responses[0].queryResult;
         if (result.intent && result.intentDetectionConfidence >= 0.7) {
-            return result.fulfillmentText;
-        } else {
-            return undefined;
+            if (result.intent.displayName !== "default-fallback") return result.fulfillmentText;
         }
+        
+        return undefined;
     }
 }
 
