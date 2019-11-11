@@ -18,6 +18,7 @@
     "no-redundant-jsdoc": false,
     "prefer-type-cast": false,
     "import-name": false,
+    "whitespace": [true, "check-module"],
     "typedef": [
       true,
       "parameter",

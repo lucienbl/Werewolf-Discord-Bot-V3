@@ -15,8 +15,8 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import {Command} from "./index";
-import {Message} from "discord.js";
+import { Command } from "./index";
+import { Message } from "discord.js";
 
 class TesterHatCommand extends Command {
 

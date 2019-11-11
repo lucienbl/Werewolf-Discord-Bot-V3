@@ -18,7 +18,7 @@
 import { Message } from "discord.js";
 import { LocalEvents, EventEmitter } from "./index";
 import { DirectMessageHandler, Handler, CommonMessageHandler } from "../handlers";
-import {Logger} from "../utils";
+import { Logger } from "../utils";
 
 class MessageDispatcher {
 

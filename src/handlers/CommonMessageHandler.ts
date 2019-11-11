@@ -15,10 +15,10 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import {Message, User} from "discord.js";
+import { Message, User } from "discord.js";
 import { EventEmitter } from "events";
 import Handler from "./Handler";
-import {Commands, DialogFlow, LocalEvents} from "../core";
+import { Commands, DialogFlow, LocalEvents } from "../core";
 import HelpCommand from "../commands/HelpCommand";
 import TesterHatCommand from "../commands/TesterHatCommand";
 

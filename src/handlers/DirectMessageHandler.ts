@@ -18,7 +18,7 @@
 import { Message } from "discord.js";
 import { EventEmitter } from "events";
 import Handler from "./Handler";
-import {DialogFlow, LocalEvents} from "../core";
+import { DialogFlow, LocalEvents } from "../core";
 
 class DirectMessageHandler extends Handler {
 
