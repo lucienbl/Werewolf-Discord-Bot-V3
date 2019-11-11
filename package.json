@@ -7,7 +7,7 @@
   },
   "author": "Lucien Blunk-Lallet <lucien.blunk.lallet@gmail.com>",
   "scripts": {
-    "start": "npm install typescript -g && node build/src/main.js",
+    "start": "npm install typescript -g && yarn build && node build/src/main.js",
     "clean": "rimraf coverage build tmp",
     "build": "tsc -p tsconfig.release.json",
     "build:watch": "tsc -w -p tsconfig.release.json",
