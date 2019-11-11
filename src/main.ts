@@ -1,15 +1,18 @@
-import Discord, { Message } from 'discord.js';
-import { Events } from "./core";
-import MessageHandler from "./handlers/MessageHandler";
+import { Message, Client } from 'discord.js';
+import { Events, MessageDispatcher } from "./core";
+import { Logger } from "./utils";
 
-const client = new Discord.Client();
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
 
-client.on(Events.Ready, () => {
-  console.log(`Logged in as ${client.user.tag}!`);
-});
+const client = new Client();
+const messageDispatcher = new MessageDispatcher();
 
-client.on(Events.Message, async (msg: Message) => MessageHandler.dispatch(msg));
+client.on(Events.Ready, () => messageDispatcher.initializeClientStack());
 
-client.login('token').then(() => {
-  console.log("Successfully logged in!");
+client.on(Events.Message, (message: Message) => messageDispatcher.dispatch(message));
+
+client.login(process.env.BOT_TOKEN).then(() => {
+  Logger.info("Bot logged in!");
 });
