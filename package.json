@@ -19,6 +19,7 @@
     "discord.js": "^11.5.1",
     "dotenv": "^8.2.0",
     "events": "^3.0.0",
+    "tsc": "^1.20150623.0",
     "tslib": "~1.10.0"
   },
   "devDependencies": {
