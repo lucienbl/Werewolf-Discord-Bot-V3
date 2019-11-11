@@ -18,11 +18,12 @@ class CommonMessageHandler extends Handler {
     _handleNewCommonMessage = async (message: Message): Promise<void> => {
         const userId = message.author.id;
         const text = message.content;
+        const selfId = message.client.user.id;
 
-        const dialogFlowResponse = await this._dialogFlow.getResponse(userId, text.replace("<@643439556363943976>", ""));
+        const dialogFlowResponse = await this._dialogFlow.getResponse(userId, text.replace(`<@${selfId}>`, ""));
 
         if (dialogFlowResponse.intentDetectionConfidence >= 0.65) {
-            if (message.mentions.users.filter((user: User) => user.id == "643439556363943976").size >= 1) {
+            if (message.mentions.users.filter((user: User) => user.id == selfId).size >= 1) {
                 message.channel.send(dialogFlowResponse.fulfillmentText);
             } else if (dialogFlowResponse.intent.displayName) {
                 if (dialogFlowResponse.intent.displayName !== "default-fallback") {
