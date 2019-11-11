@@ -32,8 +32,8 @@ class MessageDispatcher {
 
         const dialogFlowResponse = await this._dialogFlow.getResponse(userId, text);
 
-        if (dialogFlowResponse) {
-            return message.channel.send(dialogFlowResponse);
+        if (dialogFlowResponse.intent && dialogFlowResponse.intentDetectionConfidence >= 0.7) {
+            if (dialogFlowResponse.intent.displayName !== "default-fallback" || isDM) return message.channel.send(dialogFlowResponse.fulfillmentText);
         }
 
         if (isDM) {
